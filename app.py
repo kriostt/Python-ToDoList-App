@@ -101,16 +101,16 @@ elif page == "View Tasks":
 
 # Section to edit existing task
 elif page == "Edit Task":
-    st.title("Edit an Existing Task") # Title for the edit task page
+    # Title for the edit task page
+    st.title("Edit an Existing Task") 
 
     # Fetch all tasks from the database
     tasks = Task.get_all_tasks()
     # Get titles of all tasks for selection
-    task_titles = [task['title'] for task in tasks] 
-
+    task_titles = ["Select a Task"] + [task['title'] for task in tasks] 
+        
     # Dropdown to select the task to edit
     selected_task_title = st.selectbox("Select Task to Edit", task_titles)
-
     # Find the selected task's details
     selected_task = next((task for task in tasks if task['title'] == selected_task_title), None)
 
@@ -144,11 +144,15 @@ elif page == "Edit Task":
             Task.update_task(selected_task['_id'], new_title, new_description, new_due_date_str, new_priority, new_event, new_start_date_str)  
             
             # Success message
-            st.success("Task updated successfully!") 
+            st.success(f"Task '{selected_task_title}' updated successfully!") 
+
+            # Refresh the page
+            st.rerun()
 
 # Section to delete existing task
 elif page == "Delete Task":
-    st.title("Delete an Existing Task") # Title for the delete task page
+    # Title for the delete task page
+    st.title("Delete an Existing Task") 
 
     # Fetch all tasks from the database
     tasks = Task.get_all_tasks()
