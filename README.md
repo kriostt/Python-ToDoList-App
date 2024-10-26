@@ -1,5 +1,7 @@
 # To-Do List Application
+<div align="justify">
 This To-Do List application allows users to manage tasks effectively through a web interface built with Streamlit and powered by a MongoDB database. Users can add, view, edit, and delete both personal and work-related tasks, helping them stay organized and on track with their responsibilities.
+</div>
 
 ## Features
 * __Add Tasks:__ Create new tasks with a title, description, due date, priority, and specific attributes based on the task type (event for personal tasks, start date for work tasks).
