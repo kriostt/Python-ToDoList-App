@@ -32,7 +32,7 @@ def edit_task_page():
 
         # Check if task type is personal task, add new event if it is
         if task_type == "Personal Task":
-            new_event = st.selectbox("Edit Event Type", ["Chore", " Hobby", "Occassion", "Activity", "Errand"], index=["Chore", " Hobby", "Occassion", "Activity", "Errand"].index(selected_task['event']))
+            new_event = st.selectbox("Edit Event Type", ["Chore", "Hobby", "Occasion", "Activity", "Errand"], index=["Chore", " Hobby", "Occassion", "Activity", "Errand"].index(selected_task['event']))
         else:
             new_event = None
 
