@@ -101,11 +101,12 @@ elif page == "View Tasks":
 
 # Section to edit existing task
 elif page == "Edit Task":
-    st.title("Edit an Existing Task")  # Title for the edit task page
+    st.title("Edit an Existing Task") # Title for the edit task page
 
     # Fetch all tasks from the database
     tasks = Task.get_all_tasks()
-    task_titles = [task['title'] for task in tasks]  # Get titles of all tasks for selection
+    # Get titles of all tasks for selection
+    task_titles = [task['title'] for task in tasks] 
 
     # Dropdown to select the task to edit
     selected_task_title = st.selectbox("Select Task to Edit", task_titles)
@@ -141,4 +142,31 @@ elif page == "Edit Task":
         if st.button("Update Task"):
             # Call method to update the task in the database
             Task.update_task(selected_task['_id'], new_title, new_description, new_due_date_str, new_priority, new_event, new_start_date_str)  
-            st.success("Task updated successfully!") # Success message
+            
+            # Success message
+            st.success("Task updated successfully!") 
+
+# Section to delete existing task
+elif page == "Delete Task":
+    st.title("Delete an Existing Task") # Title for the delete task page
+
+    # Fetch all tasks from the database
+    tasks = Task.get_all_tasks()
+    # Get titles of all tasks for selection
+    task_titles = [task['title'] for task in tasks] 
+
+    # Dropdown to select the task to delete
+    selected_task_title = st.selectbox("Select Task to Delete", task_titles)
+
+    # Find the selected task's details
+    selected_task = next((task for task in tasks if task['title'] == selected_task_title), None)
+
+    if selected_task:
+        # Button to delete the task
+        if st.button("Delete Task"):
+            # Call method to delete the task in the database
+            Task.delete_task(selected_task['_id'])
+            
+            # Success message
+            st.success("Task deleted successfully!") 
+            st.rerun()

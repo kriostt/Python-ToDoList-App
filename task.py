@@ -33,7 +33,12 @@ class Task:
 
         # Update the task in the MongoDB collection
         tasks_collection.update_one({"_id": task_id}, new_values)
-        
+    
+    @classmethod
+    def delete_task(cls, task_id):
+        # Delete the task from the MongoDB collection
+        tasks_collection.delete_one({"_id": task_id})
+
 # Subclass for PersonalTask
 class PersonalTask(Task):
     def __init__(self, title, description, due_date, priority, event):
