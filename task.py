@@ -17,7 +17,23 @@ class Task:
     def get_all_tasks(cls):
         tasks = list(tasks_collection.find())  # Fetch all tasks from the MongoDB collection
         return tasks # Return the list of tasks
+    
+    @classmethod
+    def update_task(cls, task_id, new_title, new_description, new_due_date, new_priority, new_event=None, new_start_date=None):
+        # Set new values to the user input
+        new_values = { "$set": { 'title': new_title, 'description': new_description, 'due_date': new_due_date, 'priority': new_priority}}
 
+        # Check if a new event is provided and update if it is 
+        if new_event != None:
+            new_values["$set"]['event'] = new_event
+
+        # Check if a new start date is provided and update if it is 
+        if new_start_date != None:
+            new_values["$set"]['start_date'] = new_start_date
+
+        # Update the task in the MongoDB collection
+        tasks_collection.update_one({"_id": task_id}, new_values)
+        
 # Subclass for PersonalTask
 class PersonalTask(Task):
     def __init__(self, title, description, due_date, priority, event):
@@ -53,7 +69,3 @@ class WorkTask(Task):
         }
         tasks_collection.insert_one(task_data) # Insert the task data into the MongoDB collection
         return f"Work Task '{self._title}' saved to the database."  # Return a confirmation message
-
-
-
-
