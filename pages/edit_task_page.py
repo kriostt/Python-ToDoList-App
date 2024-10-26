@@ -48,5 +48,8 @@ def edit_task_page():
             # Call method to update the task in the database
             Task.update_task(selected_task['_id'], new_title, new_description, new_due_date_str, new_priority, new_event, new_start_date_str)  
 
-            # Navigate to the list of tasks page
-            st.switch_page(st.Page(view_tasks_page))
+            # Success message
+            st.success(f"Task '{selected_task_title}' updated successfully!") 
+
+            # Refresh the page
+            st.rerun()
