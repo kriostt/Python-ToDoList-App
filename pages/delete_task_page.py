@@ -41,5 +41,8 @@ def delete_task_page():
             # Call method to delete the task in the database
             Task.delete_task(selected_task['_id'])
 
-            # Navigate to the list of tasks page
-            st.switch_page(st.Page(view_tasks_page))  
+            # Success message
+            st.success(f"Task '{selected_task_title}' deleted successfully!") 
+            
+            # Refresh the page
+            st.rerun() 
