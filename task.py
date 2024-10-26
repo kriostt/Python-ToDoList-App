@@ -21,7 +21,13 @@ class Task:
     @classmethod
     def update_task(cls, task_id, new_title, new_description, new_due_date, new_priority, new_event=None, new_start_date=None):
         # Set new values to the user input
-        new_values = { "$set": { 'title': new_title, 'description': new_description, 'due_date': new_due_date, 'priority': new_priority}}
+        new_values = { "$set": { 
+            'title': new_title, 
+            'description': new_description, 
+            'due_date': new_due_date, 
+            'priority': new_priority
+            }
+        }
 
         # Check if a new event is provided and update if it is 
         if new_event != None:
