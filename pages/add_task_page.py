@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime
 from task import Task, PersonalTask, WorkTask
+from pages.view_tasks_page import view_tasks_page
 
 # Method to add a new task
 def add_task_page():
@@ -22,7 +23,9 @@ def add_task_page():
             task = PersonalTask(title, description, due_date, priority, event)
             task.save_to_db() # Save the task to the database
             st.success(f"Personal Task '{title}' added successfully!") 
-    
+            # Navigate to the list of tasks page
+            st.switch_page(st.Page(view_tasks_page))
+
     # Logic for adding a work task
     elif task_type == "Work Task":
         start_date = st.date_input("Start Date", min_value=datetime.today()) 
@@ -30,3 +33,5 @@ def add_task_page():
             task = WorkTask(title, description, due_date, priority, start_date)
             task.save_to_db() # Save the task to the database
             st.success(f"Work Task '{title}' added successfully!")
+            # Navigate to the list of tasks page
+            st.switch_page(st.Page(view_tasks_page))
