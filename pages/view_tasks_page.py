@@ -1,6 +1,7 @@
 import streamlit as st
 from datetime import datetime
-from task import Task, PersonalTask, WorkTask
+
+from task import Task
 
 # Method to view existing tasks
 def view_tasks_page():

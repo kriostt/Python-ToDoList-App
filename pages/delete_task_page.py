@@ -1,8 +1,7 @@
 import streamlit as st
 from datetime import datetime
 
-from task import Task, PersonalTask, WorkTask
-from pages.view_tasks_page import view_tasks_page
+from task import Task
 
 # Method to delete an existing task
 def delete_task_page():
